@@ -1,0 +1,10 @@
+{
+  "RapidApi": "https://exercisedb.p.rapidapi.com/exercises/",
+  "ServerUrl": "https://localhost:44323/api/",
+  "Routes": {
+    "Login": "Authentication/Login",
+    "Register": "Authentication/RegisterCustomer",
+    "RegisterUser": "Authentication/RegisterUser",
+    "RegisterAdmin": "Authentication/RegisterAdmin"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "RapidApi": "https://exercisedb.p.rapidapi.com/exercises/",
+  "RapidApi": "https://exercisedb.p.rapidapi.com/",
   "ServerUrl": "https://localhost:44323/api/",
   "Routes": {
     "Login": "Authentication/Login",

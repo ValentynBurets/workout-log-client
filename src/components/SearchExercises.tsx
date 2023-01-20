@@ -4,37 +4,49 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { Trans } from "react-i18next";
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import { Exercise } from "../types/exercise";
+import HorizontalScrollbar from "./HorizontalScrollbar";
 
-export interface ISearchExercisesProps {}
+export interface ISearchExercisesProps {
+  setExercises: (arg: any) => void;
+  bodyPart: any;
+  setBodyPart: (arg: any) => void;
+}
 
 export const SearchExercises = (props: ISearchExercisesProps) => {
-
-  const [search, setSearch] = useState('');
-  const [exercises, setExercises] = useState([]);
+  const [search, setSearch] = useState("");
+  const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetch
-    }
-  }, [])
+      const bodyPartsData = await fetch(
+        "exercises/bodyPartList",
+        exerciseOptions
+      );
+
+      setBodyParts(["all", ...bodyPartsData]);
+    };
+
+    fetchExercisesData();
+  }, []);
 
   const handleSearch = async () => {
-    if(search){
-      const exerciseData = await fetchData("bodyPartList", exerciseOptions);
+    if (search) {
+      const exerciseData = await fetchData("exercises", exerciseOptions);
 
       console.log(exerciseData);
 
       const searchedExercises = exerciseData.filter(
-        (exercise: Exercise) => exercise.name.toLowerCase().includes(search)
-        || exercise.target.toLowerCase().includes(search)
-        || exercise.equipment.toLowerCase().includes(search)
-        || exercise.bodyPart.toLowerCase().includes(search)
+        (exercise: Exercise) =>
+          exercise.name.toLowerCase().includes(search) ||
+          exercise.target.toLowerCase().includes(search) ||
+          exercise.equipment.toLowerCase().includes(search) ||
+          exercise.bodyPart.toLowerCase().includes(search)
       );
 
-      setSearch('');
-      setExercises(searchedExercises);
+      setSearch("");
+      props.setExercises(searchedExercises);
     }
-  }
+  };
 
   return (
     <Stack alignItems="center" mt="p" justifyContent="center" p="20px">
@@ -53,10 +65,12 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
             width: { lg: "1170px", xs: "350px" },
             backgroundColor: "#fff",
             borderRadius: "10px",
-            border: 'none'
+            border: "none",
           }}
           value={search}
-          onChange={(e) => {setSearch(e.target.value.toLowerCase())}}
+          onChange={(e) => {
+            setSearch(e.target.value.toLowerCase());
+          }}
           placeholder="Search Exercises"
           type="text"
         />
@@ -67,15 +81,24 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
             color: "#fff",
             textTransform: "none",
             width: { lg: "175px", xs: "80px" },
-            fontSize: { lg: '20px', xs: '14px'},
-            height: '56px', 
+            fontSize: { lg: "20px", xs: "14px" },
+            height: "56px",
             position: "absolute",
-            right: '0'
+            right: "0",
           }}
-          onClick={() => {handleSearch()}}
+          onClick={() => {
+            handleSearch();
+          }}
         >
           <Trans i18nKey="EnterLatitude">Search</Trans>
         </Button>
+      </Box>
+      <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
+        <HorizontalScrollbar
+          data={bodyParts}
+          bodyPart={props.bodyPart}
+          setBodyPart={props.setBodyPart}
+        />
       </Box>
     </Stack>
   );

@@ -22,7 +22,8 @@
     "web-vitals": "^2.1.4",
     "i18next": "^21.8.7",
     "i18next-browser-languagedetector": "^6.1.4",
-    "react-i18next": "^11.16.9"
+    "react-i18next": "^11.16.9",
+    "react-horizontal-scrolling-menu": "^2.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -4,22 +4,42 @@ import { Box, Stack, Typography } from "@mui/material/";
 
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
+import { ExerciseType } from "../types/ExerciseType";
+import ConnectionConfig from "../assets/jsonData/ConnectionConfig/ConnectionConfig.json"
 
 export interface IExersisesProps {
-  setExercises: (arg: any) => void;
-  bodyPart: any;
-  exercises: any[];
+  setExercises: (arg: ExerciseType[]) => void;
+  bodyPart: string;
+  exercises: ExerciseType[];
 }
 
-export const Exersises = (props: IExersisesProps) => {
+export const Exercises = (props: IExersisesProps) => {
   console.log(props.exercises);
 
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 9;
 
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      let exercisesData = [];
+
+      if (props.bodyPart === 'all') {
+        exercisesData = await fetchData(ConnectionConfig.ExerciseDB + '/exercises', exerciseOptions);
+      } else {
+        exercisesData = await fetchData(ConnectionConfig.ExerciseDB + `/exercises/bodyPart/${props.bodyPart}`, exerciseOptions);
+      }
+
+      props.setExercises(exercisesData);
+    };
+
+    fetchExercisesData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.bodyPart]);
+
+    // Pagination
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = props.exercises.slice(indexOfFirstExercise, indexOfLastExercise)
+  const currentExercises : ExerciseType[] = props.exercises.slice(indexOfFirstExercise, indexOfLastExercise)
 
   const paginate = (e: any, value: number) => {
     setCurrentPage(value);
@@ -37,7 +57,7 @@ export const Exersises = (props: IExersisesProps) => {
         flexWrap="wrap"
         justifyContent="center"
       >
-        {currentExercises.map((exercise: any, index: any) => (
+        {currentExercises.map((exercise: ExerciseType, index: any) => (
           <ExerciseCard key={index} exercise={exercise}/>
         ))}
       </Stack>

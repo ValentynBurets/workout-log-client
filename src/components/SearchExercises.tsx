@@ -3,27 +3,29 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { Trans } from "react-i18next";
 import { exerciseOptions, fetchData } from "../utils/fetchData";
-import { Exercise } from "../types/exercise";
+import { ExerciseType } from "../types/ExerciseType";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
+import ConnectionConfig from "../assets/jsonData/ConnectionConfig/ConnectionConfig.json"
+
 export interface ISearchExercisesProps {
-  setExercises: (arg: any) => void;
+  setExercises: (arg: ExerciseType[]) => void;
   bodyPart: any;
   setBodyPart: (arg: any) => void;
 }
 
 export const SearchExercises = (props: ISearchExercisesProps) => {
   const [search, setSearch] = useState("");
-  const [bodyParts, setBodyParts] = useState([]);
+  const [bodyParts, setBodyParts] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetch(
-        "exercises/bodyPartList",
+      const bodyPartsData = await fetchData(ConnectionConfig.ExerciseDB + 
+        "/exercises/bodyPartList",
         exerciseOptions
       );
 
-      setBodyParts(["all", ...bodyPartsData]);
+      setBodyParts(['all', ...bodyPartsData]);
     };
 
     fetchExercisesData();
@@ -31,12 +33,12 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exerciseData = await fetchData("exercises", exerciseOptions);
+      const exerciseData = await fetchData(ConnectionConfig.ExerciseDB + "/exercises", exerciseOptions);
 
       console.log(exerciseData);
 
-      const searchedExercises = exerciseData.filter(
-        (exercise: Exercise) =>
+      const searchedExercises: ExerciseType[] = exerciseData.filter(
+        (exercise: ExerciseType) =>
           exercise.name.toLowerCase().includes(search) ||
           exercise.target.toLowerCase().includes(search) ||
           exercise.equipment.toLowerCase().includes(search) ||
@@ -94,11 +96,13 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
         </Button>
       </Box>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        <HorizontalScrollbar
-          data={bodyParts}
+        {/* <HorizontalScrollbar
+          data={[]}
+          dataNames={bodyParts}
           bodyPart={props.bodyPart}
           setBodyPart={props.setBodyPart}
-        />
+          isBodyParts={true}
+        /> */}
       </Box>
     </Stack>
   );

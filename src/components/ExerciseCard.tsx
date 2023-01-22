@@ -1,22 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Stack, Typography } from "@mui/material";
+import { ExerciseType } from "../types/ExerciseType";
 
 export interface IExerciseCard {
-  exercise: {
-    id: string;
-    giftUrl: string;
-    bodyPart: string;
-    target: string;
-    name: string;
-  };
+  exercise: ExerciseType;
 }
 
 const ExerciseCard = (props: IExerciseCard) => {
   return (
     <Link className="exercise-card" to={`/exercise/${props.exercise.id}`}>
       <img
-        src={props.exercise.giftUrl}
+        src={props.exercise.gifUrl}
         alt={props.exercise.bodyPart}
         loading="lazy"
       />

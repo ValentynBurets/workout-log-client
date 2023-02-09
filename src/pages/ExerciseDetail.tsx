@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 
-import { exerciseOptions, youtubeOptions, fetchData } from "../utils/fetchData";
+import { fetchData } from "../utils/fetchData";
 import Detail from "../components/Detail";
 import ExerciseVideos from "../components/ExerciseVideos";
 import SimilarExercises from "../components/SimilarExercises";
@@ -32,25 +32,25 @@ const ExerciseDetail = () => {
   useEffect(() => {
     const fetchExercisesData = async () => {
       const exerciseDetailData = (await fetchData(
-        `${ConnectionConfig.ExerciseDB}/exercises/exercise/${params.id}`,
+        `${ConnectionConfig.ServerUrl}/exercises/exercise/${params.id}`,
         exerciseOptions
       )) as ExerciseType;
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideoData = await fetchData(
-        `${ConnectionConfig.YouTubeSearch}/search?query=${exerciseDetail.name} exercise`,
+        `${ConnectionConfig.ServerUrl}/search?name=${exerciseDetail.name} exercise`,
         youtubeOptions
       );
       setExerciseVideos(exerciseVideoData.contents);
 
       const tartgetMuscleExercisesData = await fetchData(
-        `${ConnectionConfig.ExerciseDB}/exercises/target/${exerciseDetailData.target}`,
+        `${ConnectionConfig.ServerUrl}/exercises/target/${exerciseDetailData.target}`,
         exerciseOptions
       );
       setTartgetMuscleExercises(tartgetMuscleExercisesData);
 
       const equipmentExercisesData = await fetchData(
-        `${ConnectionConfig.ExerciseDB}/exercises/target/${exerciseDetailData.equipment}`,
+        `${ConnectionConfig.ServerUrl}/exercises/target/${exerciseDetailData.equipment}`,
         exerciseOptions
       );
       setEquipmentExercises(equipmentExercisesData);

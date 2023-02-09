@@ -1,10 +1,6 @@
-export interface ExerciseVideoType{
-    video: { 
-        videoId: any; 
-        thumbnails: { 
-            url: string | undefined; 
-        }[]; 
-        title: string | undefined; 
-        channelName: string;
-    }; 
+export interface ExerciseVideoType {
+  videoId: any;
+  url: string | undefined;
+  title: string | undefined;
+  channelName: string;
 }

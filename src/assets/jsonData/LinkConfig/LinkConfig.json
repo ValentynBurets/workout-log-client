@@ -1,0 +1,12 @@
+{
+  "about": "/about",
+  "home": "/home",
+  "exercise_management": {
+    "exercise": "/exercise"
+  },
+  "user_management": {
+    "profile": "/profile",
+    "user_list": "/user-list"
+  },
+  "statistics" : "/statistics"
+}

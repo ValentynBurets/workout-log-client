@@ -31,14 +31,14 @@ const ExerciseVideos = (props: IExerciseVideos) => {
             <a
               key={index}
               className="exercise-video"
-              href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
+              href={`https://www.youtube.com/watch?v=${item.videoId}`}
               target="_blank"
               rel="noreferrer"
             >
-              <img src={item.video.thumbnails[0].url} alt={item.video.title} />
+              <img src={item.url} alt={item.title} />
               <Box>
                 <Typography variant="h5" color="#000">
-                  {item.video.channelName}
+                  {item.channelName}
                 </Typography>
               </Box>
             </a>

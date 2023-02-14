@@ -1,19 +1,39 @@
 {
-  "ExerciseDB": "https://exercisedb.p.rapidapi.com",
-  "YouTubeSearch": "https://youtube-search-and-download.p.rapidapi.com",
-  "ServerUrl": "https://localhost:44323/api",
+  "ServerUrl": "https://localhost:44323/api/",
   "Routes": {
-    "Login": "Authentication/Login",
-    "Register": "Authentication/RegisterCustomer",
-    "RegisterUser": "Authentication/RegisterUser",
-    "RegisterAdmin": "Authentication/RegisterAdmin",
-    "GetProfileInfo": "Profile/info",
-    "GetProfileInfoById": "Profile/info/getById",
-    "UpdateProfileInfo": "Profile/info/update",
-    "GetProfilePhone": "Profile/phone",
-    "UpdateProfilePhone": "Profile/phone/update",
-    "GetProfileEmail": "Profile/email",
-    "UpdateProfileEmail": "Profile/email/update",
-    "UpdateProfilePassword": "Profile/password/update"
+    "Authentication": {
+      "RegisterUser": "Authentication/RegisterUser",
+      "RegisterAdmin": "Authentication/RegisterAdmin",
+      "Login": "Authentication/Login"
+    },
+    "Exercises": {
+      "Create": "Exercises/Create",
+      "Update": "Exercises/Update",
+      "Delete": "Exercises/Delete",
+      "GetById": "Exercises/GetById",
+      "GetByTarget": "Exercises/GetByTarget",
+      "GetAll": "Exercises/GetAll",
+      "GetByEquipment": "Exercises/GetByEquipment",
+      "GetByBodyPart": "Exercises/GetByBodyPart"
+    },
+    "Profile": {
+      "GetAll": "Profile/getAll",
+      "GetProfileInfo": "Profile/info",
+      "UpdateProfileInfo": "Profile/info/update",
+      "GetProfileEmail": "Profile/email",
+      "UpdateProfileEmail": "Profile/email/update",
+      "UpdateProfilePassword": "Profile/password/update",
+      "GetProfileInfoById": "Profile/info/getById"
+    },
+    "TrainingPlan": {
+      "Create": "TrainingPlan/Create",
+      "Update": "TrainingPlan/Update",
+      "Delete": "TrainingPlan/Delete",
+      "GetById": "TrainingPlan/GetById",
+      "GetAll": "TrainingPlan/GetAll"
+    },
+    "Video": {
+      "Search": "Videos/search"
+    }
   }
 }

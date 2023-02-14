@@ -32,26 +32,22 @@ const ExerciseDetail = () => {
   useEffect(() => {
     const fetchExercisesData = async () => {
       const exerciseDetailData = (await fetchData(
-        `${ConnectionConfig.ServerUrl}/exercises/exercise/${params.id}`,
-        exerciseOptions
+        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetById + "?Id=" + params.id}`
       )) as ExerciseType;
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideoData = await fetchData(
-        `${ConnectionConfig.ServerUrl}/search?name=${exerciseDetail.name} exercise`,
-        youtubeOptions
+        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Video.Search + "?name=" + exerciseDetail.name}`
       );
       setExerciseVideos(exerciseVideoData.contents);
 
       const tartgetMuscleExercisesData = await fetchData(
-        `${ConnectionConfig.ServerUrl}/exercises/target/${exerciseDetailData.target}`,
-        exerciseOptions
+        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByTarget + "?name=" + exerciseDetailData.target}`
       );
       setTartgetMuscleExercises(tartgetMuscleExercisesData);
 
       const equipmentExercisesData = await fetchData(
-        `${ConnectionConfig.ServerUrl}/exercises/target/${exerciseDetailData.equipment}`,
-        exerciseOptions
+        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByEquipment + "?name=" + exerciseDetailData.equipment}`
       );
       setEquipmentExercises(equipmentExercisesData);
     };

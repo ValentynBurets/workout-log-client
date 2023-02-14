@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { Box, Stack, Typography } from "@mui/material/";
 
-import { exerciseOptions, fetchData } from "../utils/fetchData";
+import { fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
 import { ExerciseType } from "../types/ExerciseType";
 import ConnectionConfig from "../assets/jsonData/ConnectionConfig/ConnectionConfig.json"
@@ -24,9 +24,9 @@ export const Exercises = (props: IExersisesProps) => {
       let exercisesData = [];
 
       if (props.bodyPart === 'all') {
-        exercisesData = await fetchData(ConnectionConfig.ExerciseDB + '/exercises', exerciseOptions);
+        exercisesData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetAll);
       } else {
-        exercisesData = await fetchData(ConnectionConfig.ExerciseDB + `/exercises/bodyPart/${props.bodyPart}`, exerciseOptions);
+        exercisesData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByBodyPart);
       }
 
       props.setExercises(exercisesData);

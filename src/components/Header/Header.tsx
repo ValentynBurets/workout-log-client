@@ -57,7 +57,7 @@ function Header() {
 
     axios
       .post(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Login}`,
+        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Authentication.Login}`,
         logInJson
       )
       .then((responce) => {
@@ -76,12 +76,12 @@ function Header() {
   const myInfo = () => {
     console.log(
       "ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo",
-      ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo
+      ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.GetProfileInfo
     );
     axios
       .get(
         `${
-          ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo
+          ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.GetProfileInfo
         }`,
         {
           headers: {

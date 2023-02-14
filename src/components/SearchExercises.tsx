@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { Trans } from "react-i18next";
-import { exerciseOptions, fetchData } from "../utils/fetchData";
+import { fetchData } from "../utils/fetchData";
 import { ExerciseType } from "../types/ExerciseType";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
@@ -20,11 +20,7 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData(ConnectionConfig.ExerciseDB + 
-        "/exercises/bodyPartList",
-        exerciseOptions
-      );
-
+      const bodyPartsData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByBodyPart);
       setBodyParts(['all', ...bodyPartsData]);
     };
 
@@ -33,7 +29,7 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
 
   const handleSearch = async () => {
     if (search) {
-      const exerciseData = await fetchData(ConnectionConfig.ExerciseDB + "/exercises", exerciseOptions);
+      const exerciseData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetAll);
 
       console.log(exerciseData);
 

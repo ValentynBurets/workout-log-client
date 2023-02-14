@@ -12,8 +12,8 @@ import {
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-import ConnectionConfig from "../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import LinkConfig from "../../assets/jsonData/LinkConfig/LinkConfig.json";
+import ConnectionConfig from "../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
+import LinkConfig from "../../../assets/jsonData/LinkConfig/LinkConfig.json";
 import { useTranslation, Trans } from "react-i18next";
 
 import style from "./Header.module.sass";

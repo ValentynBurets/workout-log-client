@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import Logo from "../../assets/images/Logo/Logo-1.png";
 
 import { Trans } from "react-i18next";
 
-import logoFacebook from "../../assets/images/Logo/FacebookLogo.png";
-import logoTelegram from "../../assets/images/Logo/TelegramLogo.png";
-import logoYoutube from "../../assets/images/Logo/YoutubeLogo.png";
-import logoInsta from "../../assets/images/Logo/InstagramLogo.png";
+import Logo from "../../../assets/images/Logo/Logo-1.png";
+import logoFacebook from "../../../assets/images/Logo/FacebookLogo.png";
+import logoTelegram from "../../../assets/images/Logo/TelegramLogo.png";
+import logoYoutube from "../../../assets/images/Logo/YoutubeLogo.png";
+import logoInsta from "../../../assets/images/Logo/InstagramLogo.png";
 
 import style from "./Footer.module.sass";
 
@@ -19,7 +19,7 @@ const Footer = () => (
           <a href="/" className={style.logo_image}>
             <img src={Logo} className={style.logo_image_style} alt="Logo" />
           </a>
-          <label className={style.logo_name}>LandSelling</label>
+          <label className={style.logo_name}>WorkOutLog</label>
           <label className={style.text_logo_style}>
             <Trans i18nKey="AllRightsReserved">
               Made with ❤️ by Misha Keryta

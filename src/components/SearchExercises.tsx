@@ -20,7 +20,7 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
 
   useEffect(() => {
     const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByBodyPart);
+      const bodyPartsData = await fetchData(ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetBodyParts);
       setBodyParts(['all', ...bodyPartsData]);
     };
 

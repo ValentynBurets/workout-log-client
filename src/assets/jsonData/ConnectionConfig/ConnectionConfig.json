@@ -1,5 +1,5 @@
 {
-  "ServerUrl": "https://localhost:44323/api/",
+  "ServerUrl": "https://localhost:7227/api/",
   "Routes": {
     "Authentication": {
       "RegisterUser": "Authentication/RegisterUser",
@@ -14,7 +14,8 @@
       "GetByTarget": "Exercises/GetByTarget",
       "GetAll": "Exercises/GetAll",
       "GetByEquipment": "Exercises/GetByEquipment",
-      "GetByBodyPart": "Exercises/GetByBodyPart"
+      "GetByBodyPart": "Exercises/GetByBodyPart",
+      "GetBodyParts": "Exercises/GetBodyParts"
     },
     "Profile": {
       "GetAll": "Profile/getAll",

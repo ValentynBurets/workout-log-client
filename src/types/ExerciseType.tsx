@@ -5,4 +5,5 @@ export interface ExerciseType {
   target: string;
   name: string;
   equipment: string;
+  calories: number;
 }

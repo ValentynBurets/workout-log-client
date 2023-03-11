@@ -2,7 +2,7 @@ import "./App.css";
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-import ExerciseDetail from "./pages/ExerciseDetail";
+import ExerciseDetail from "./pages/ExerciseDetail/ExerciseDetail";
 import Home from "./pages/Home";
 import AuthorizationProvider from "./components/authorization/AuthorizationProvider";
 import LinkConfig from "./assets/jsonData/LinkConfig/LinkConfig.json";

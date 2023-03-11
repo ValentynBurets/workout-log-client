@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Button,
-  Modal,
-  Form,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container'; 
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -121,7 +118,7 @@ function Header() {
     if (name !== null) {
       return (
         <Nav>
-          <DropdownButton
+          <Dropdown
             id="dropdown-basic-button"
             title={name + " " + surname + " " + email + " " + role}
           >
@@ -136,13 +133,13 @@ function Header() {
             >
               <Trans i18nKey="LogOut">LogOut</Trans>
             </Dropdown.Item>
-          </DropdownButton>
+          </Dropdown>
         </Nav>
       );
     } else {
       return (
         <Nav>
-          <DropdownButton id="dropdown-basic-button" title="Account">
+          <Dropdown id="dropdown-basic-button" title="Account">
             <Dropdown.Item
               variant="primary"
               id="dd-but-sign-in"
@@ -150,7 +147,7 @@ function Header() {
             >
               <Trans i18nKey="LogIn">LogIn</Trans>
             </Dropdown.Item>
-          </DropdownButton>
+          </Dropdown>
         </Nav>
       );
     }

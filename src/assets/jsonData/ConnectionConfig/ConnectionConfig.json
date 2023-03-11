@@ -34,7 +34,7 @@
       "GetAll": "TrainingPlan/GetAll"
     },
     "Video": {
-      "Search": "Videos/search"
+      "Search": "Video/Search"
     }
   }
 }

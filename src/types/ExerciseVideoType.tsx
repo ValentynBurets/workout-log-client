@@ -1,6 +1,6 @@
 export interface ExerciseVideoType {
-  videoId: any;
-  url: string | undefined;
-  title: string | undefined;
+  id: string;
+  url: string;
+  title: string;
   channelName: string;
 }

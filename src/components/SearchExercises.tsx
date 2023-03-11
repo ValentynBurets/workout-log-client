@@ -92,13 +92,13 @@ export const SearchExercises = (props: ISearchExercisesProps) => {
         </Button>
       </Box>
       <Box sx={{ position: "relative", width: "100%", p: "20px" }}>
-        {/* <HorizontalScrollbar
+        <HorizontalScrollbar
           data={[]}
           dataNames={bodyParts}
           bodyPart={props.bodyPart}
           setBodyPart={props.setBodyPart}
           isBodyParts={true}
-        /> */}
+        />
       </Box>
     </Stack>
   );

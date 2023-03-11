@@ -19,6 +19,7 @@ const ExerciseDetail = () => {
     target: "",
     name: "",
     equipment: "",
+    calories: 0
   };
 
   const [exerciseDetail, setExerciseDetail] = useState<ExerciseType>(
@@ -32,29 +33,59 @@ const ExerciseDetail = () => {
   useEffect(() => {
     const fetchExercisesData = async () => {
       const exerciseDetailData = (await fetchData(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetById + "?Id=" + params.id}`
+        `${
+          ConnectionConfig.ServerUrl +
+          ConnectionConfig.Routes.Exercises.GetById +
+          "?exerciseId=" +
+          params.id
+        }`
       )) as ExerciseType;
       setExerciseDetail(exerciseDetailData);
-
-      const exerciseVideoData = await fetchData(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Video.Search + "?name=" + exerciseDetail.name}`
-      );
-      setExerciseVideos(exerciseVideoData.contents);
-
-      const tartgetMuscleExercisesData = await fetchData(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByTarget + "?name=" + exerciseDetailData.target}`
-      );
-      setTartgetMuscleExercises(tartgetMuscleExercisesData);
-
-      const equipmentExercisesData = await fetchData(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetByEquipment + "?name=" + exerciseDetailData.equipment}`
-      );
-      setEquipmentExercises(equipmentExercisesData);
     };
 
     fetchExercisesData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
+
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      if (exerciseDetail.name !== "") {
+        const exerciseVideoData = await fetchData(
+          `${
+            ConnectionConfig.ServerUrl +
+            ConnectionConfig.Routes.Video.Search +
+            "?searchName=" +
+            exerciseDetail.name
+          }`
+        );
+        setExerciseVideos(exerciseVideoData);
+      }
+      if (exerciseDetail.target !== "") {
+        const tartgetMuscleExercisesData = await fetchData(
+          `${
+            ConnectionConfig.ServerUrl +
+            ConnectionConfig.Routes.Exercises.GetByTarget +
+            "?name=" +
+            exerciseDetail.target
+          }`
+        );
+        setTartgetMuscleExercises(tartgetMuscleExercisesData);
+      }
+      if (exerciseDetail.equipment !== "") {
+        const equipmentExercisesData = await fetchData(
+          `${
+            ConnectionConfig.ServerUrl +
+            ConnectionConfig.Routes.Exercises.GetByEquipment +
+            "?name=" +
+            exerciseDetail.equipment
+          }`
+        );
+        setEquipmentExercises(equipmentExercisesData);
+      }
+    };
+
+    fetchExercisesData();
+  }, [exerciseDetail]);
 
   return (
     <Box>

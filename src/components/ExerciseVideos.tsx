@@ -31,7 +31,7 @@ const ExerciseVideos = (props: IExerciseVideos) => {
             <a
               key={index}
               className="exercise-video"
-              href={`https://www.youtube.com/watch?v=${item.videoId}`}
+              href={`https://www.youtube.com/watch?v=${item.id}`}
               target="_blank"
               rel="noreferrer"
             >

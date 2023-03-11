@@ -19,18 +19,15 @@ const SimilarExercises = (props: ISimilarExercises) => {
       </Typography>
       <Stack direction="row" sx={{ p: "2", position: "relative" }}>
         {props.tartgetMuscleExercises.length ? (
-          // <HorizontalScrollbar
-          //   data={props.tartgetMuscleExercises}
-          //   dataNames={[]}
-          //   bodyPart={{} as ExerciseType}
-          //   setBodyPart={(arg) => null}
-          //   isBodyParts={false}
-          // />
-          
-          <div> text </div>
-        ) : (
-          // <Loader />
-          <div> text </div>
+          <HorizontalScrollbar
+            data={props.tartgetMuscleExercises}
+            dataNames={[]}
+            bodyPart={{} as ExerciseType}
+            setBodyPart={(arg) => null}
+            isBodyParts={false}
+          />
+          ) : (
+          <Loader />
         )}
       </Stack>
 
@@ -39,19 +36,15 @@ const SimilarExercises = (props: ISimilarExercises) => {
       </Typography>
       <Stack direction="row" sx={{ p: "2", position: "relative" }}>
         {props.equipmentExercises.length ? (
-          
-          <div> text </div>
-          // <HorizontalScrollbar
-          //   data={props.equipmentExercises}
-          //   dataNames={[]}
-          //   bodyPart={{} as ExerciseType}
-          //   setBodyPart={(arg) => null}
-          //   isBodyParts={false}
-          // />
+          <HorizontalScrollbar
+            data={props.equipmentExercises}
+            dataNames={[]}
+            bodyPart={{} as ExerciseType}
+            setBodyPart={(arg) => null}
+            isBodyParts={false}
+          />
         ) : (
-          // <Loader />
-          
-          <div> text </div>
+          <Loader />
         )}
       </Stack>
     </Box>

@@ -157,13 +157,10 @@ function Header() {
     if (localStorage.getItem("UserRole") === "User") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href={LinkConfig.home}>
+          <Nav.Link href={LinkConfig.All.home}>
             <Trans i18nKey="Exercises">Exercises</Trans>
           </Nav.Link>
-          {/* <Nav.Link href={LinkConfig.lot_management.new_lot}>
-            <Trans i18nKey="CreateNewLot">create new lot</Trans>
-          </Nav.Link> */}
-          <Nav.Link href={LinkConfig.user_management.profile}>
+          <Nav.Link href={LinkConfig.All.user_management.profile}>
             <Trans i18nKey="Profile">Profile</Trans>
           </Nav.Link>
         </div>
@@ -171,15 +168,9 @@ function Header() {
     } else if (localStorage.getItem("UserRole") === "Admin") {
       return (
         <div className={style.header_links_container}>
-          {/* <Nav.Link href={LinkConfig.lot_management.agreement.agreement_list}>
-            <Trans i18nKey="AgreementList">Agreement list</Trans>
-          </Nav.Link> */}
-          <Nav.Link href={LinkConfig.user_management.user_list}>
+          <Nav.Link href={LinkConfig.All.user_management.user_list}>
             <Trans i18nKey="Users">Users</Trans>
           </Nav.Link>
-          {/* <Nav.Link href="/lot-list-management">
-            <Trans i18nKey="LotListManagement">Lot list management</Trans>
-          </Nav.Link> */}
         </div>
       );
     }
@@ -192,7 +183,6 @@ function Header() {
           <Navbar.Brand href="/">
             <Trans i18nKey="WOL">WOL</Trans>
           </Navbar.Brand>
-
           <div>
             {Object.keys(lngs).map((lng) => (
               <button
@@ -214,14 +204,17 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="/lot-list">
-                <Trans i18nKey="Lots">Lots</Trans>
+              <Nav.Link href={LinkConfig.All.TrainingPlans}>
+                <Trans i18nKey="TrainingPlans">Training Plans</Trans>
               </Nav.Link>
-              <Nav.Link href={LinkConfig.statistics}>
+              <Nav.Link href={LinkConfig.All.NewTrainingPlan}>
+                <Trans i18nKey="NewTrainingPlans">New Training Plans</Trans>
+              </Nav.Link>
+              <Nav.Link href={LinkConfig.All.statistics}>
                 <Trans i18nKey="Statistics">Statistics</Trans>
               </Nav.Link>
               {getUserLinks()}
-              <Nav.Link href={LinkConfig.about}>
+              <Nav.Link href={LinkConfig.All.about}>
                 <Trans i18nKey="AboutUs">About Us</Trans>
               </Nav.Link>
             </Nav>

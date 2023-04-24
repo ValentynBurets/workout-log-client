@@ -9,6 +9,8 @@ import logoTelegram from "../../../assets/images/Logo/TelegramLogo.png";
 import logoYoutube from "../../../assets/images/Logo/YoutubeLogo.png";
 import logoInsta from "../../../assets/images/Logo/InstagramLogo.png";
 
+import TextData from "../../../assets/jsonData/TextData/en.json"
+
 import style from "./Footer.module.sass";
 
 const Footer = () => (
@@ -33,8 +35,8 @@ const Footer = () => (
             <Trans i18nKey="Navigation">Navigation</Trans>
           </label>
           <div className={style.nav_link_container}>
-            <a href="/lots" className={style.nav_link}>
-              <Trans i18nKey="Lots">Lots</Trans>
+            <a href="/training_plans" className={style.nav_link}>
+              <Trans i18nKey="TrainingPlans">Training Plans</Trans>
             </a>
             <a href="/about_us" className={style.nav_link}>
               <Trans i18nKey="AboutUs">About us</Trans>
@@ -60,8 +62,8 @@ const Footer = () => (
                 alt="Logo"
               />
             </a>
-            <a href="LandSelling.ua" className={style.media_description}>
-              YouTube: LandSelling.ua
+            <a href="WorkOutLog.ua" className={style.media_description}>
+              YouTube: {TextData.WorkOutLog}.ua
             </a>
           </div>
           <div className={style.media_image_and_description}>
@@ -74,8 +76,8 @@ const Footer = () => (
                 alt="Logo"
               />
             </a>
-            <a href="@LandSelling.ua" className={style.media_description}>
-              Instagram: @LandSelling.ua
+            <a href="@WorkOutLog.ua" className={style.media_description}>
+              Instagram: @{TextData.WorkOutLog}.ua
             </a>
           </div>
           <div className={style.media_image_and_description}>
@@ -88,8 +90,8 @@ const Footer = () => (
                 alt="Logo"
               />
             </a>
-            <a href="LandSelling" className={style.media_description}>
-              Facebook: LandSelling
+            <a href="WorkOutLog" className={style.media_description}>
+              Facebook: {TextData.WorkOutLog}
             </a>
           </div>
           <div className={style.media_image_and_description}>
@@ -102,8 +104,8 @@ const Footer = () => (
                 alt="Logo"
               />
             </a>
-            <a href="LandSelling" className={style.media_description}>
-              Telegram: LandSelling
+            <a href="WorkOutLog" className={style.media_description}>
+              Telegram: {TextData.WorkOutLog}
             </a>
           </div>
         </div>

@@ -24,7 +24,10 @@
       "GetProfileEmail": "Profile/email",
       "UpdateProfileEmail": "Profile/email/update",
       "UpdateProfilePassword": "Profile/password/update",
-      "GetProfileInfoById": "Profile/info/getById"
+      "GetProfileInfoById": "Profile/info/getById",
+
+      "GetProfilePhone": "Profile/phone",
+      "UpdateProfilePhone": "Profile/phone/update"
     },
     "TrainingPlan": {
       "Create": "TrainingPlan/Create",

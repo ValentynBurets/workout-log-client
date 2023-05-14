@@ -1,10 +1,15 @@
-export interface RequestResult{
+export interface RequestType {
+  type: boolean;
+  message: string;
+}
+
+export interface RequestResult {
+  good: {
+    message: string;
     show: boolean;
+  };
+  bad: {
     message: string;
-  }
-  
-  export interface RequestType{
-    type: boolean;
-    message: string;
-  }
-  
+    show: boolean;
+  };
+}

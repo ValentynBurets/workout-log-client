@@ -13,6 +13,7 @@ import { ExerciseVideoType } from "../../types/ExerciseVideoType";
 
 const ExerciseDetail = () => {
   const exerciseTypeInitialState = {
+    number: "",
     id: "",
     gifUrl: "",
     bodyPart: "",

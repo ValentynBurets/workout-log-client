@@ -1,7 +1,7 @@
 import React, { createElement, FC } from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useAuth } from "../authorization/AuthorizationProvider";
-import BadRequest from "../Message/BadRequest";
+import { BadRequest } from "../Message/RequestMessage";
 
 interface AuthorizedRouteProps extends RouteProps {
   role: string;

@@ -3,7 +3,7 @@ import Pagination from "@mui/material/Pagination";
 import { Box, Stack, Typography } from "@mui/material/";
 
 import { fetchData } from "../utils/fetchData";
-import ExerciseCard from "./ExerciseCard";
+import ExerciseCard from "./ExerciseCard/ExerciseCard";
 import { ExerciseType } from "../types/ExerciseType";
 import ConnectionConfig from "../assets/jsonData/ConnectionConfig/ConnectionConfig.json"
 

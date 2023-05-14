@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Stack, Typography } from "@mui/material";
-import { ExerciseType } from "../types/ExerciseType";
+import { ExerciseType } from "../../types/ExerciseType";
 
 export interface IExerciseCard {
   exercise: ExerciseType;

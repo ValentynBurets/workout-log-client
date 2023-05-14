@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar';
-import Modal from 'react-bootstrap/Modal';
-import Container from 'react-bootstrap/Container'; 
-import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+import Modal from "react-bootstrap/Modal";
+import Container from "react-bootstrap/Container";
+import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -16,11 +16,11 @@ import { useTranslation, Trans } from "react-i18next";
 import style from "./Header.module.sass";
 
 function Header() {
-  const [name, setName] = useState<string | null>("");
-  const [surname, setSurname] = useState<string | null>("");
-  const [email, setEmail] = useState<string | null>("");
-  const [password, setPassword] = useState<string | null>("");
-  const [role, setRole] = useState<string | null>("");
+  const [name, setName] = useState<string | null>(null);
+  const [surname, setSurname] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [role, setRole] = useState<string | null>(null);
 
   const [show, setShow] = useState<boolean>(false);
   let history = useHistory();
@@ -37,8 +37,8 @@ function Header() {
 
   function handleSignOut() {
     localStorage.clear();
-    setName("");
-    setSurname("");
+    setName(null);
+    setSurname(null);
     history.push({
       pathname: "/about",
     });
@@ -54,7 +54,10 @@ function Header() {
 
     axios
       .post(
-        `${ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Authentication.Login}`,
+        `${
+          ConnectionConfig.ServerUrl +
+          ConnectionConfig.Routes.Authentication.Login
+        }`,
         logInJson
       )
       .then((responce) => {
@@ -73,12 +76,14 @@ function Header() {
   const myInfo = () => {
     console.log(
       "ConnectionConfig.ServerUrl + ConnectionConfig.Routes.GetProfileInfo",
-      ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.GetProfileInfo
+      ConnectionConfig.ServerUrl +
+        ConnectionConfig.Routes.Profile.GetProfileInfo
     );
     axios
       .get(
         `${
-          ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.GetProfileInfo
+          ConnectionConfig.ServerUrl +
+          ConnectionConfig.Routes.Profile.GetProfileInfo
         }`,
         {
           headers: {
@@ -90,6 +95,7 @@ function Header() {
       .then((responce) => {
         var data = responce.data;
         localStorage.setItem("UserName", data.name);
+        setName(data.name);
         localStorage.setItem("UserSurname", data.surname);
         localStorage.setItem("UserRole", data.role);
         localStorage.setItem("UserEmail", data.email);
@@ -124,14 +130,18 @@ function Header() {
           >
             {/* <Dropdown.Item variant="primary" id="dd-but-sign-in" onClick={handleShow}>Sign in</Dropdown.Item> */}
             <Dropdown.Item variant="primary" id="dd-but-profile">
-              <Trans i18nKey="Profile">Profile</Trans>
+              <p style={{ color: "white" }}>
+                <Trans i18nKey="Profile">Profile</Trans>
+              </p>
             </Dropdown.Item>
             <Dropdown.Item
               variant="primary"
               id="dd-but-sign-out"
               onClick={handleSignOut}
             >
-              <Trans i18nKey="LogOut">LogOut</Trans>
+              <p style={{ color: "white" }}>
+                <Trans i18nKey="LogOut">LogOut</Trans>
+              </p>
             </Dropdown.Item>
           </Dropdown>
         </Nav>
@@ -145,7 +155,9 @@ function Header() {
               id="dd-but-sign-in"
               onClick={handleShow}
             >
-              <Trans i18nKey="LogIn">LogIn</Trans>
+              <p style={{ color: "white" }}>
+                <Trans i18nKey="LogIn">LogIn</Trans>
+              </p>
             </Dropdown.Item>
           </Dropdown>
         </Nav>
@@ -178,7 +190,7 @@ function Header() {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
         <Container>
           <Navbar.Brand href="/">
             <Trans i18nKey="WOL">WOL</Trans>

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Chart from "./Components/Chart";
 import LoadStatisticServices from "./Services/LoadStatisticServices";
 
-import BadRequest from "../../components/Message/BadRequest";
+import { BadRequest, requestDefaultState } from "../../components/Message/RequestMessage";
 import { Container } from "react-bootstrap";
 
 import style from "./StatisticChartsStyle.module.sass";
 import { Trans } from "react-i18next";
+import { RequestResult } from "../../types/RequestResult";
 
 interface IStatisticChartsProps {}
 
@@ -18,10 +19,7 @@ function StatisticCharts(props: IStatisticChartsProps) {
   //   averageViewsPerLot: 0,
   // });
 
-  const [badRequest, setBadRequest] = useState<{
-    show: boolean;
-    message: string;
-  }>({ show: false, message: "" });
+  const [request, setRequest] = useState<RequestResult>(requestDefaultState);
 
   // useEffect(() => {
   //   LoadStatisticServices({
@@ -50,7 +48,7 @@ function StatisticCharts(props: IStatisticChartsProps) {
         <div className={style.header_text}>
           <Trans i18nKey="StatisticCharts">StatisticCharts</Trans>
         </div>
-        <BadRequest show={badRequest.show} text={badRequest.message} />
+        <BadRequest show={request.bad.show} text={request.bad.message} />
         {/* <Chart quantity={quantity} /> */}
       </Container>
     </div>

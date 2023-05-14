@@ -4,7 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import style from "./ExercisesCarouselStyle.module.sass";
 import { ExerciseType } from "../../types/ExerciseType";
-import ExerciseCard from "../ExerciseCard";
+import ExerciseCard from "../ExerciseCard/ExerciseCard";
 
 interface IExercisesCarouselProps {
   exercisesArrray: ExerciseType[];
@@ -21,11 +21,12 @@ function ExercisesCarousel(props: IExercisesCarouselProps) {
     <div className={style.CardImageStyle}>
       <Carousel
         indicators={true}
-        interval={3000}
+        interval={1000}
         slide={true}
         touch={true}
         activeIndex={index}
         onSelect={handleSelect}
+        pause='hover'
       >
         {props?.exercisesArrray?.map((exercise, id) => {
           return (

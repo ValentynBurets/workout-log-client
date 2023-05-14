@@ -1,4 +1,4 @@
-import { ExerciseType } from "../ExerciseType";
+import { ExerciseType } from "../../ExerciseType";
 
 export interface SimpleTrainingPlanModel {
     name: string;

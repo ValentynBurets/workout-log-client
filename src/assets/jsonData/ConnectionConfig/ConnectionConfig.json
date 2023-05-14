@@ -30,7 +30,10 @@
       "UpdateProfilePhone": "Profile/phone/update"
     },
     "TrainingPlan": {
-      "Create": "TrainingPlan/Create",
+      "Create": {
+        "SimpleTrainingPlan": "TrainingPlan/CreateSimpleTrainingPlan",
+        "ScheduledTrainingPlan": "TrainingPlan/CreateScheduledTrainingPlan"
+      },
       "Update": "TrainingPlan/Update",
       "Delete": "TrainingPlan/Delete",
       "GetById": "TrainingPlan/GetById",

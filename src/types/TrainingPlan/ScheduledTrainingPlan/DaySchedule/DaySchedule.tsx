@@ -6,3 +6,6 @@ export interface DaySchedule {
     scheduleExercises: ScheduleExercise[];
 }
 
+
+
+

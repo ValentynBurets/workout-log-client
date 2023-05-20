@@ -1,6 +1,6 @@
 export interface ScheduleExercise {
     startDate: Date;
-    durationInMinutes: number;
+    duration: number;
     frequency: number;
     exerciseId: string;
 }

@@ -29,12 +29,14 @@ function SimpleTrainingPlanPage(props: ISimpleTrainingPlanProps) {
   const [trainingPlanModel, setTrainingPlanModel] =
     useState<SimpleTrainingPlanModel>(SimpleTrainingPlanModelInitialValue);
 
-  const addExerciceToTrainingPlan = (item: ExerciseType) => {
-    if (!trainingPlanModel.planExercises.includes(item)) {
+  const addExerciceToTrainingPlan = (exerciseItem: ExerciseType) => {
+    if (!trainingPlanModel.planExercises.includes(exerciseItem)) {
       setTrainingPlanModel(
         (prev) =>
-          prev && { ...prev, planExercises: [...prev.planExercises, item] }
+          prev && { ...prev, planExercises: [...prev.planExercises, exerciseItem] }
       );
+
+      setExercices(exercises.filter(item => item.id !== exerciseItem.id))
     }
   };
 

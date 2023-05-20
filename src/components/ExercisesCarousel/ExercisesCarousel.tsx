@@ -26,21 +26,25 @@ function ExercisesCarousel(props: IExercisesCarouselProps) {
         touch={true}
         activeIndex={index}
         onSelect={handleSelect}
-        pause='hover'
+        pause="hover"
       >
         {props?.exercisesArrray?.map((exercise, id) => {
           return (
             <Carousel.Item key={id} className={style.card_image_style_3}>
               <div className={style.card_image_div_style}>
+                <div>
                 <ExerciseCard exercise={exercise} />
-                <div className={style.card_select_button}>
-                  <Button
-                    variant="info"
-                    onClick={() => {props.selectExercise(exercise);}}
-                  >
-                    Select
-                  </Button>
                 </div>
+                <Button
+                  variant="info"
+                  onClick={() => {
+                    props.selectExercise(exercise);
+                  }}
+                  >
+                  Select
+                </Button>
+                {/* <div className={style.card_select_button}>
+                </div> */}
               </div>
             </Carousel.Item>
           );

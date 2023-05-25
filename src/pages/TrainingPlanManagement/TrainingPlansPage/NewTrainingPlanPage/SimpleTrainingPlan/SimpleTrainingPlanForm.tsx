@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ExerciseType } from "../../../../../types/ExerciseType";
 import { fetchData } from "../../../../../utils/fetchData";
 import ConnectionConfig from "../../../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import { SimpleTrainingPlan } from "../../../../../types/TrainingPlan/SimpleTrainingPlan/SimpleTrainingPlan";
+import { CreateSimpleTrainingPlan } from "../../../../../types/TrainingPlan/SimpleTrainingPlan/CreateSimpleTrainingPlan";
 import { SimpleTrainingPlanModel } from "../../../../../types/TrainingPlan/SimpleTrainingPlan/SimpleTrainingPlanModel";
 import ExercisesCarousel from "../../../../../components/ExercisesCarousel/ExercisesCarousel";
 import style from "./SimpleTrainingPlanForm.module.sass";
@@ -84,7 +84,7 @@ function SimpleTrainingPlanPage(props: ISimpleTrainingPlanProps) {
       exerciseIds.push(exercise.id)
     );
 
-    let createTrainingPlan: SimpleTrainingPlan = {
+    let createTrainingPlan: CreateSimpleTrainingPlan = {
       name: trainingPlanModel.name,
       startDate: trainingPlanModel.startDate,
       endDate: trainingPlanModel.endDate,

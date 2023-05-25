@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
-import { ScheduleExercise } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/ScheduleExercise";
+import { CreateScheduleExercise } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/CreateScheduleExercise";
 import { ExerciseType } from "../../../../../../types/ExerciseType";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import ExercisesCarousel from "../../../../../../components/ExercisesCarousel/ExercisesCarousel";
 import ExerciseList from "./ForList/ExerciseList";
-import { ScheduledTrainingPlan } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduledTrainingPlan";
+import { CreateScheduledTrainingPlan } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/CreateScheduledTrainingPlan";
 import { WeekDay } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/WeekDay";
 import "./AddExerciseModalStyle.sass";
-import { DaySchedule } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/DaySchedule";
+import { CreateDaySchedule } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/CreateDaySchedule";
+import { useTrainingPlanContext } from "../Components/Context/TrainingPlanContext";
+import { TrainingPlanContextType } from "../Components/Context/Types/TrainingPlanType";
+import ConnectionConfig from "../../../../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
+import { fetchData } from "../../../../../../utils/fetchData";
 
 interface AddExerciseModalProps {
   show: boolean;
   onHide: () => void;
-  exercises: ExerciseType[];
-  setExercises: (arg: ExerciseType[]) => void;
-  onAdd: (daySchedule: DaySchedule) => void;
-  onDelete: (exerciseId: string) => void;
-  state: ScheduledTrainingPlan;
-  day: WeekDay;
-  dayName: string;
 }
 
 // Component for adding exercises to the day schedule
@@ -29,14 +26,46 @@ export const AddExerciseModal: React.FC<AddExerciseModalProps> = (
     null
   );
 
-  const [daySchedule, setDaySchedule] = useState<DaySchedule>({
-    day: props.day,
-    scheduleExercises: [],
-  });
+  const { daySchedule, setDaySchedule, dayScheduleInitialState, dayName, handleAddDaySchedule } =
+    useTrainingPlanContext() as TrainingPlanContextType;
+
+  const [exercises, setExercises] = useState<ExerciseType[]>([]);
 
   useEffect(() => {
-    console.log(daySchedule);
-  }, [daySchedule]);
+    const fetchExercisesData = async () => {
+      let exercisesData: ExerciseType[] = [];
+      exercisesData = await fetchData(
+        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetAll
+      );
+      setExercises(
+        daySchedule.scheduleExercises.length !== 0
+          ? exercisesData.filter(
+              (item) =>
+                !daySchedule.scheduleExercises.find(
+                  (exercise: CreateScheduleExercise) => exercise.exerciseId === item.id
+                )
+            )
+          : exercisesData
+      );
+    };
+    fetchExercisesData();
+  }, []);
+
+  // const onDelete = (exerciseId: string) => {
+  //   setDaySchedule(
+  //     (prev: any) =>
+  //       prev && {
+  //         ...prev,
+  //         scheduleExercises: [
+  //           ...(daySchedule.scheduleExercises.length > 0
+  //             ? daySchedule.scheduleExercises.filter(
+  //                 (item: CreateDaySchedule) => item.scheduleExercises !== exerciseId
+  //               )
+  //             : []),
+  //         ],
+  //       }
+  //   );
+  // };
 
   const [frequency, setFrequency] = useState<number>(1);
   const [duration, setDuration] = useState<number>(1);
@@ -44,28 +73,28 @@ export const AddExerciseModal: React.FC<AddExerciseModalProps> = (
 
   const handleAddExercise = () => {
     if (selectedExercise) {
-      const exercise: ScheduleExercise = {
+      const exercise: CreateScheduleExercise = {
         frequency,
         duration,
         startDate,
         exerciseId: selectedExercise.id,
       };
 
-      setDaySchedule((prev: DaySchedule) => ({
+      setDaySchedule((prev: CreateDaySchedule) => ({
         ...prev,
         scheduleExercises: [...prev.scheduleExercises, exercise],
       }));
 
-      props.setExercises(props.exercises.filter(item => item.id !== selectedExercise.id))
+      setExercises(
+        exercises.filter((item) => item.id !== selectedExercise.id)
+      );
     }
   };
-
-  console.log(props.exercises);
 
   return (
     <Modal show={props.show} onHide={props.onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Create day plan for {props.dayName}</Modal.Title>
+        <Modal.Title>Create day plan for {dayName}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row>
@@ -74,7 +103,7 @@ export const AddExerciseModal: React.FC<AddExerciseModalProps> = (
               <ExerciseList
                 exercises={daySchedule.scheduleExercises}
                 onDelete={(id: string) => {
-                  props.onDelete(id);
+                  //onDelete(id);
                 }}
               />
             ) : (
@@ -88,7 +117,7 @@ export const AddExerciseModal: React.FC<AddExerciseModalProps> = (
               <Form.Group controlId="exercise">
                 <Form.Label>Select Exercise</Form.Label>
                 <ExercisesCarousel
-                  exercisesArrray={props.exercises}
+                  exercisesArrray={exercises}
                   selectExercise={(arg: ExerciseType) =>
                     setSelectedExercise(arg)
                   }
@@ -140,7 +169,7 @@ export const AddExerciseModal: React.FC<AddExerciseModalProps> = (
         <Button
           variant="primary"
           onClick={() => {
-            props.onAdd(daySchedule);
+            handleAddDaySchedule(daySchedule);
             props.onHide();
           }}
         >

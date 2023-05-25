@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Button, Container, Col, Row } from "react-bootstrap";
-import { WeekDay } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/WeekDay";
+import { WeekDay } from "../../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/WeekDay";
 import "./DayListStyle.sass";
+import { useTrainingPlanContext } from "../Context/TrainingPlanContext";
+import { TrainingPlanContextType } from "../Context/Types/TrainingPlanType";
 
 interface DayCarouselProps {
   setShowModal: (arg: boolean) => void;
-  setDay: (arg: WeekDay) => void;
-  setDayName: (arg: string) => void;
 }
 
 export const DayList: React.FC<DayCarouselProps> = (props) => {
+
+  const { setDay, setDayName, } = useTrainingPlanContext() as TrainingPlanContextType;
+
   return (
     <div>
       <Container>
@@ -19,8 +22,8 @@ export const DayList: React.FC<DayCarouselProps> = (props) => {
               <div className={"day-label-wrapper"}>
                 <span
                   onClick={() => {
-                    props.setDay(WeekDay[day as keyof typeof WeekDay]);
-                    props.setDayName(day);
+                    setDay(WeekDay[day as keyof typeof WeekDay]);
+                    setDayName(day);
                     props.setShowModal(true);
                   }}
                 >

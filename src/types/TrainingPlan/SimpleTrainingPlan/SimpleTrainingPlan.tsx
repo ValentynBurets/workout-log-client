@@ -1,7 +1,10 @@
+import { ExerciseType } from "../../ExerciseType";
+
 export interface SimpleTrainingPlan {
-    name: string;
-    isNoDate: boolean;
-    startDate: Date;
-    endDate: Date;
-    planExerciseIds: string[];
+  id: string;
+  name: string;
+  isNoDate: boolean;
+  startDate: Date;
+  endDate: Date;
+  planExercises: ExerciseType[];
 }

@@ -1,9 +1,8 @@
 import { CreateDaySchedule } from "./DaySchedule/CreateDaySchedule";
 
-export interface ScheduledTrainingPlan {
-    id: string;
-    userId: string;
+export interface CreateScheduledTrainingPlan {
     name: string;
+    isNoDate: boolean;
     startDate: Date;
     endDate: Date;
     daySchedules: CreateDaySchedule[];

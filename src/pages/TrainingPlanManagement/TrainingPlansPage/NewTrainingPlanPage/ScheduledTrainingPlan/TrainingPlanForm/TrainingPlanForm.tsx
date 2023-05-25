@@ -1,87 +1,46 @@
-import { useState, useReducer, useEffect } from "react";
-import { Modal, Button, Form, Tabs, Tab } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import styles from "../TrainingPlanStyle.module.sass";
-import { WeekDay } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/WeekDay";
-import ExercisesCarousel from "../../../../../../components/ExercisesCarousel/ExercisesCarousel";
-import { ExerciseType } from "../../../../../../types/ExerciseType";
+import { AddExerciseModal } from "../AddExerciseModal/AddExerciseModal";
+import { DayList } from "../Components/DayCarousel/DayList";
+import { BadRequest, GoodRequest, requestDefaultState } from "../../../../../../components/Message/RequestMessage";
+import { useTrainingPlanContext } from "../Components/Context/TrainingPlanContext";
+import { TrainingPlanContextType } from "../Components/Context/Types/TrainingPlanType";
 import { fetchData } from "../../../../../../utils/fetchData";
 import ConnectionConfig from "../../../../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
-import {
-  ScheduledTrainingPlanReducer,
-  initialState,
-} from "../Reducer/ScheduledTrainingPlanReducer";
-import { DaySchedule } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/DaySchedule/DaySchedule";
-import { ScheduleExercise } from "../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/ScheduleExercise";
-import { AddExerciseModal } from "../AddExerciseModal/AddExerciseModal";
-import { DayList } from "../DayCarousel/DayList";
-import { BadRequest, GoodRequest, requestDefaultState } from "../../../../../../components/Message/RequestMessage";
-import { RequestResult } from "../../../../../../types/RequestResult";
-
-interface TrainingPlanFormProps {
-  exercises: ExerciseType[];
-}
+import PostService from "../../../../../../components/Services/PostService";
 
 const TrainingPlanForm: React.FC = () => {
-  const [request, setRequest] = useState<RequestResult>(requestDefaultState);
-
-  const [exercises, setExercises] = useState<ExerciseType[]>([]);
-  const [day, setDay] = useState<WeekDay>(WeekDay.FRIDAY);
-  const [dayName, setDayName] = useState<string>("");
-
+  //daySchedule={state.daySchedules.length !== 0 ? state.daySchedules.filter(item => item.day === day)[0] : null}
+  const { state, dispatch, request, setRequest } = useTrainingPlanContext() as TrainingPlanContextType;
   const [showModal, setShowModal] = useState(false);
-  const [state, dispatch] = useReducer(
-    ScheduledTrainingPlanReducer,
-    initialState
-  );
 
-  useEffect(() => {
-    const fetchExercisesData = async () => {
-      let exercisesData: ExerciseType[] = [];
-      exercisesData = await fetchData(
-        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetAll
-      );
-      console.log(exercisesData);
-      setExercises(exercisesData);
-    };
-    fetchExercisesData();
-  }, []);
+  const handleSubmit = async() => {
+    // Handle form submission
+    let data = await PostService(
+      ConnectionConfig.Routes.TrainingPlan.Create.ScheduledTrainingPlan,
+      state
+    );
 
-  const handleAddDaySchedule = (dayIndex: number, daySchedule: DaySchedule) => {
-    if(daySchedule.scheduleExercises.length === 0){
+    if (data) {
       setRequest(
-        (prev) =>
+        (prev: any) =>
           prev && {
             ...prev,
-            bad: { show: true, message: "day plan doesn't contain any exercise" },
+            good: { show: true, message: "training plan is created" },
           }
       );
-      return
+    } else {
+      setRequest(
+        (prev: any) =>
+          prev && {
+            ...prev,
+            bad: { show: true, message: "training plan isn't created" },
+          }
+      );
     }
 
-    dispatch({
-      type: "ADD_DAY_SCHEDULE",
-      payload: { dayIndex, daySchedule },
-    });
-  };
-
-  const handleRemoveExercise = (dayIndex: number, exerciseIndex: number) => {
-    dispatch({
-      type: "REMOVE_SCHEDULE_EXERCISE",
-      payload: { dayIndex, exerciseIndex },
-    });
-  };
-
-  const handleSubmit = () => {
-    // Handle form submission
-
-    setRequest(
-      (prev) =>
-        prev && {
-          ...prev,
-          good: { show: true, message: "trainig plan is added" },
-        }
-    );
-    console.log(state);
+    setTimeout(setRequest(requestDefaultState), 3000);
   };
 
   return (
@@ -142,45 +101,15 @@ const TrainingPlanForm: React.FC = () => {
       </Form>
       <DayList
         setShowModal={setShowModal}
-        setDay={(arg: WeekDay) => setDay(arg)}
-        setDayName={(arg: string) => setDayName(arg)}
       />
-      {state.daySchedules.map((daySchedule, dayIndex) => (
-        <div key={dayIndex}>
-          <h4>{daySchedule.day}</h4>
-          {daySchedule.scheduleExercises.map((exercise, exerciseIndex) => (
-            <div>
-              <div key={exerciseIndex}>
-                <span>
-                  {exercises.find((ex) => ex.id === exercise.exerciseId)?.name}
-                </span>
-              </div>
-              <Button
-                variant="danger"
-                onClick={() => handleRemoveExercise(dayIndex, exerciseIndex)}
-              >
-                Remove
-              </Button>
-            </div> 
-          ))}
-        </div>
-      ))}
-
       <div className={styles["save-training-plan-style"]}>
-        <Button variant="success" onClick={handleSubmit}>
+        <Button variant="success" onClick={()=>{handleSubmit()}}>
           Save Training Plan
         </Button>
       </div>
       <AddExerciseModal
         show={showModal}
         onHide={() => setShowModal(false)}
-        exercises={exercises}
-        setExercises={setExercises}
-        onAdd={() => handleAddDaySchedule}
-        onDelete={() => handleRemoveExercise}
-        state={state}
-        day={day}
-        dayName={dayName}
       />
     </div>
   );

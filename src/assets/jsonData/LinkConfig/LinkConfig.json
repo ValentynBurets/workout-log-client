@@ -1,6 +1,7 @@
 {
   "All": {
     "TrainingPlans": "/training_plans",
+    "TrainingPlan": "/training_plan",    
     "NewTrainingPlan": "/new_training_plan",    
     "about": "/about",
     "home": "/home",

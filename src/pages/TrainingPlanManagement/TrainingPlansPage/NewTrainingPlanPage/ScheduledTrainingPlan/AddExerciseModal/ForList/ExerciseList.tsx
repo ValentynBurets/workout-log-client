@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import ExerciseShortCard from "./ExerciseShortCard/ExerciseShortCard";
-import { ScheduleExercise } from "../../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/ScheduleExercise";
+import { CreateScheduleExercise } from "../../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/CreateScheduleExercise";
 
 interface Props {
-  exercises: ScheduleExercise[];
+  exercises: CreateScheduleExercise[];
   onDelete: (id: string) => void;
 }
 

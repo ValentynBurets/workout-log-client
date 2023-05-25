@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { ExerciseType } from "../../../../../../../../types/ExerciseType";
 import style from "./ExerciseShortCard.module.sass"
-import { ScheduleExercise } from "../../../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/ScheduleExercise";
+import { CreateScheduleExercise } from "../../../../../../../../types/TrainingPlan/ScheduledTrainingPlan/ScheduleExercise/CreateScheduleExercise";
 import ConnectionConfig from "../../../../../../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 import { fetchData } from "../../../../../../../../utils/fetchData";
 
 interface ExerciseCardProps {
-  scheduleExercise: ScheduleExercise;
+  scheduleExercise: CreateScheduleExercise;
   onDelete: (id: string) => void;
 }
 

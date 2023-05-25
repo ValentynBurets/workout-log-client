@@ -8,24 +8,12 @@ import style from "./NewTrainingPlanPage.module.sass";
 import { ExerciseType } from "../../../../types/ExerciseType";
 import { fetchData } from "../../../../utils/fetchData";
 import ConnectionConfig from "../../../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
+import TrainingPlanProvider from "./ScheduledTrainingPlan/Components/Context/TrainingPlanContext";
 
 interface INewTrainingPlanProps {}
 
 function NewTrainingPlanPage(props: INewTrainingPlanProps) {
-  const [exercises, setExercises] = useState<ExerciseType[]>([]);
-
-  useEffect(() => {
-    const fetchExercisesData = async () => {
-      let exercisesData = [];
-
-      exercisesData = await fetchData(
-        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Exercises.GetAll
-      );
-
-      setExercises(exercisesData);
-    };
-    fetchExercisesData();
-  },[]);
+  // const [ScheduledTrainingPlanState, setScheduledTrainingPlanState] = useState<ScheduledTrainingPlanContextType>("light");
 
   return (
     <div className={style.tab_component_style}>
@@ -36,7 +24,9 @@ function NewTrainingPlanPage(props: INewTrainingPlanProps) {
             <SimpleTrainingPlanPage />
           </Tab>
           <Tab eventKey="second" title="Scheduled training plan">
-            <TrainingPlanForm/>
+            <TrainingPlanProvider>
+              <TrainingPlanForm/>
+            </TrainingPlanProvider>
           </Tab>
           <Tab eventKey="third" title="How to create ?">
             Hii, I am 3rd tab content

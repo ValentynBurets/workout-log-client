@@ -169,9 +169,6 @@ function Header() {
     if (localStorage.getItem("UserRole") === "User") {
       return (
         <div className={style.header_links_container}>
-          <Nav.Link href={LinkConfig.All.home}>
-            <Trans i18nKey="Exercises">Exercises</Trans>
-          </Nav.Link>
           <Nav.Link href={LinkConfig.All.user_management.profile}>
             <Trans i18nKey="Profile">Profile</Trans>
           </Nav.Link>
@@ -234,7 +231,7 @@ function Header() {
           <Nav>{getDropdown()}</Nav>
         </Container>
       </Navbar>
-      <Modal show={show}>
+      <Modal style={{ width: "40%", marginLeft: "50%", marginTop: "2%" }} show={show}>
         <Modal.Header className={style.login_modal_header}>
           <Modal.Title>
             <Trans i18nKey="LogIn">LogIn</Trans>

@@ -13,7 +13,7 @@ interface ILoadStatisticServicesProps {
 
 function LoadStatisticServices(props: ILoadStatisticServicesProps) {
   GetService.request(
-    ConnectionConfig.ServerUrl + "Statistic/GetExercisesQuantityPerWeekByUserId"
+    ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Statistic.GetExercisesQuantityPerWeekByUserId
   ).then((response) => {
     if (response.data === null) {
       props.setRequest({
@@ -34,8 +34,7 @@ function LoadStatisticServices(props: ILoadStatisticServicesProps) {
   });
 
   GetService.request(
-    ConnectionConfig.ServerUrl +
-      "Statistic/GetBurnedCalloriesQuantityPerWeekByUserId"
+    ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Statistic.GetBurnedCalloriesQuantityPerWeekByUserId
   ).then((response) => {
     if (response.data === null) {
       props.setRequest({
@@ -56,8 +55,7 @@ function LoadStatisticServices(props: ILoadStatisticServicesProps) {
   });
 
   GetService.request(
-    ConnectionConfig.ServerUrl +
-      "Statistic/GetTrainedMinutesQuantityPerWeekByUserId"
+    ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Statistic.GetTrainedMinutesQuantityPerWeekByUserId
   ).then((response) => {
     if (response.data === null) {
       props.setRequest({

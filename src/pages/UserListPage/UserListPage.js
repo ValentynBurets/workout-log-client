@@ -13,7 +13,7 @@ import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
 import { Trans } from "react-i18next";
 
-import ConnectionConfig from "../../Assets/jsonData/ConnectionConfig/ConnectionConfig.json";
+import ConnectionConfig from "../../assets/jsonData/ConnectionConfig/ConnectionConfig.json";
 
 import "./UserListPage.sass";
 
@@ -164,7 +164,7 @@ function UserListPage() {
   function loadUsers() {
     axios
       .get(
-        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.getAll,
+        ConnectionConfig.ServerUrl + ConnectionConfig.Routes.Profile.GetAll,
         {
           headers: {
             "Content-type": "application/json; charset=UTF-8",

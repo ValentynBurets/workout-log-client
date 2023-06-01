@@ -29,7 +29,7 @@ function NewTrainingPlanPage(props: INewTrainingPlanProps) {
             </TrainingPlanProvider>
           </Tab>
           <Tab eventKey="third" title="How to create ?">
-            Hii, I am 3rd tab content
+            Hii, You need to fill all filds and select available exersices
           </Tab>
         </Tabs>
       </div>

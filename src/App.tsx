@@ -10,6 +10,10 @@ import AuthorizedRoute from "./components/roleRoutes/AuthRoute";
 import TrainingPlansPage from "./pages/TrainingPlanManagement/TrainingPlansPage/TrainingPlansPage/TrainingPlansPage";
 import NewTrainingPlanPage from "./pages//TrainingPlanManagement/TrainingPlansPage/NewTrainingPlanPage/NewTrainingPlanPage";
 import { Layout } from "./components/Layouts/Layout/Layout";
+import About from "./pages/AboutPage/About";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import StatisticCharts from "./pages/StatisticCharts/StatisticCharts";
+import UserListPage from "./pages/UserListPage/UserListPage";
 
 function App() {
   return (
@@ -35,6 +39,30 @@ function App() {
               exact
               path={LinkConfig.All.NewTrainingPlan}
               component={NewTrainingPlanPage}
+              role={"All"}
+            />
+            <AuthorizedRoute
+              exact
+              path={LinkConfig.All.about}
+              component={About}
+              role={"All"}
+            />
+            <AuthorizedRoute
+              exact
+              path={LinkConfig.All.user_management.profile}
+              component={ProfilePage}
+              role={"All"}
+            />
+            <AuthorizedRoute
+              exact
+              path={LinkConfig.All.statistics}
+              component={StatisticCharts}
+              role={"All"}
+            />
+            <AuthorizedRoute
+              exact
+              path={LinkConfig.All.user_management.user_list}
+              component={UserListPage}
               role={"All"}
             />
           </Router>

@@ -6,5 +6,5 @@ export interface SimpleTrainingPlan {
   isNoDate: boolean;
   startDate: Date;
   endDate: Date;
-  planExercises: ExerciseType[];
+  exercises: ExerciseType[];
 }

@@ -37,10 +37,16 @@
       "Update": "TrainingPlan/Update",
       "Delete": "TrainingPlan/Delete",
       "GetById": "TrainingPlan/GetById",
-      "GetAll": "TrainingPlan/GetAll"
+      "GetAll": "TrainingPlan/GetAll",
+      "Get": "TrainingPlan/Get"
     },
     "Video": {
       "Search": "Video/Search"
+    },
+    "Statistic": {
+      "GetExercisesQuantityPerWeekByUserId": "Statistic/GetExercisesQuantityPerWeekByUserId",
+      "GetBurnedCalloriesQuantityPerWeekByUserId": "Statistic/GetBurnedCalloriesQuantityPerWeekByUserId",
+      "GetTrainedMinutesQuantityPerWeekByUserId": "Statistic/GetTrainedMinutesQuantityPerWeekByUserId"
     }
   }
 }

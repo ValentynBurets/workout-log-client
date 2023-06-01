@@ -1,7 +1,6 @@
 import { SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
-import Image from "react-bootstrap/Image";
 import style from "./ExercisesCarouselStyle.module.sass";
 import { ExerciseType } from "../../types/ExerciseType";
 import ExerciseCard from "../ExerciseCard/ExerciseCard";
@@ -9,13 +8,16 @@ import ExerciseCard from "../ExerciseCard/ExerciseCard";
 interface IExercisesCarouselProps {
   exercisesArrray: ExerciseType[];
   selectExercise: (arg: ExerciseType) => void;
+  showSelect?: boolean;
 }
 
-function ExercisesCarousel(props: IExercisesCarouselProps) {
+function ExercisesCarousel({  showSelect = true , ...props}: IExercisesCarouselProps) {
   const [index, setIndex] = useState(0);
   const handleSelect = (selectedIndex: SetStateAction<number>, e: any) => {
     setIndex(selectedIndex);
   };
+
+  //console.log(props);
 
   return (
     <div className={style.CardImageStyle}>
@@ -33,16 +35,18 @@ function ExercisesCarousel(props: IExercisesCarouselProps) {
             <Carousel.Item key={id} className={style.card_image_style_3}>
               <div className={style.card_image_div_style}>
                 <div>
-                <ExerciseCard exercise={exercise} />
+                  <ExerciseCard exercise={exercise} />
                 </div>
-                <Button
-                  variant="info"
-                  onClick={() => {
-                    props.selectExercise(exercise);
-                  }}
+                
+                {showSelect &&
+                  <Button
+                    variant="info"
+                    onClick={() => {
+                      props.selectExercise(exercise);
+                    }}
                   >
-                  Select
-                </Button>
+                    Select
+                  </Button>}
                 {/* <div className={style.card_select_button}>
                 </div> */}
               </div>

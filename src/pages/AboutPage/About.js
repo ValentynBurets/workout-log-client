@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Container, Tab, Nav, Row, Col, Card, CardDeck } from "react-bootstrap";
+import { Container, Tab, Nav, Row, Col, Card} from "react-bootstrap";
+import { CardDeck } from "reactstrap";
 import { Trans } from "react-i18next";
 
 import WorkOutImage from "../../assets/images/Logo/work_out_symbol.webp";
@@ -118,7 +119,7 @@ export default class About extends Component {
                         <Card.Body>
                           <Card.Title>{this.props.Title}</Card.Title>
                           <Card.Text>
-                            Valentyn Burets
+                            Keryta Misha
                             <p />
                             Front-end and back end developer
                           </Card.Text>

@@ -2,6 +2,6 @@ import { ScheduledTrainingPlan } from "./ScheduledTrainingPlan/ScheduledTraining
 import { SimpleTrainingPlan } from "./SimpleTrainingPlan/SimpleTrainingPlan";
 
 export interface TrainingPlanList{
-  scheduledTrainingPlan: ScheduledTrainingPlan[];
-  simpleTrainingPlanModel: SimpleTrainingPlan[];
+  scheduleTrainingPlans: ScheduledTrainingPlan[];
+  simpleTrainingPlans: SimpleTrainingPlan[];
 }
